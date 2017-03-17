@@ -1,0 +1,8 @@
+(;module:
+  lux
+  (lux (codata io)
+       [cli #+ program:]))
+
+(program: args
+  (io (exec
+        (log! "Hello World"))))
