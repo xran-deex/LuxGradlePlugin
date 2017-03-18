@@ -14,7 +14,8 @@ class LuxCompile extends JavaExec {
   @Override
   void exec() {
     setMain("lux")
-    setArgs(["release", program, "", sourcePath, classesPath])
+    def relativeClassesDir = project.relativePath(classesPath)
+    setArgs(["release", program, "", sourcePath, relativeClassesDir])
 
     classpath += project.buildscript.configurations.classpath
 
