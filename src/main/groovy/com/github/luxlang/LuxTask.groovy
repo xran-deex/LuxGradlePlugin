@@ -10,12 +10,14 @@ class LuxCompile extends JavaExec {
   String sourcePath
   String program
   String classesPath = "lux_classes"
+  String resourcesPath
+  String build
 
   @Override
   void exec() {
     setMain("lux")
     def relativeClassesDir = project.relativePath(classesPath)
-    setArgs(["release", program, "", sourcePath, relativeClassesDir])
+    setArgs([build, program, resourcesPath, sourcePath, relativeClassesDir])
 
     classpath += project.buildscript.configurations.classpath
 

@@ -15,6 +15,7 @@ class LuxPlugin implements Plugin<Project> {
         sourcePath = project.lux.sourcePath
         program = project.lux.program
         resourcesPath = project.lux.resourcesPath
+        build = project.lux.build
         classesPath = "${project.buildDir}/${project.lux.classesPath}"
     })
 
@@ -33,15 +34,6 @@ class LuxPlugin implements Plugin<Project> {
           attributes("Main-Class": "${project.lux.program}._")
       }
     }).dependsOn(project.tasks.compileLux)
-
-    // project.task('clean').doLast {
-    //    project.delete("${project.buildDir}/${project.lux.classesPath}")
-    //    if(project.lux.targetPath == null) {
-    //      project.delete("${project.buildDir}")
-    //    } else {
-    //      project.delete("${project.lux.targetPath}")
-    //    }
-    // }
   }
 }
 
@@ -50,6 +42,6 @@ class LuxPluginExtension {
   String program
   String classesPath = "lux"
   String targetPath
-  String resourcesPath
+  String resourcesPath = ""
   String build = "debug"
 }

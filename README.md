@@ -16,16 +16,23 @@ Just build using gradle. A jar file should be created in build/libs
 ```
 gradle build
 ```
-Until the plugin is available in a repository, you will need to copy the jar file into whatever project you need to build.
+
+#### Installing:
+
+This will install into your local Maven repository
+```
+gradle install
+```
+
+Until the plugin is available in a central repository, you will need to build and install the plugin yourself.
 
 #### Example:
 
-Assuming you've copied the __LuxGradlePlugin-0.1-SNAPSHOT.jar__ into the libs directory in your project's root directory...
+Assuming you've built and installd the plugin to you local maven repository (~/.m2) ...
 Example folder structure (See the example app in the repository):
 ```bash
 build.gradle
 src/your/package/main.lux
-libs/LuxGradlePlugin-0.1-SNAPSHOT.jar
 ```
 
 Sample __build.gradle__
@@ -33,14 +40,12 @@ Sample __build.gradle__
 buildscript {
     repositories {
       jcenter()
-      flatDir {
-        dirs "./libs"
-      }
+      mavenLocal()
     }
     dependencies {
       classpath 'com.github.luxlang:luxc-jvm:0.5.0'
       classpath 'com.github.luxlang:stdlib:0.5.0'
-      classpath 'com.github.luxlang:LuxGradlePlugin:0.1-SNAPSHOT'
+      classpath 'com.github.luxlang:LuxGradlePlugin:0.3-SNAPSHOT'
     }
 }
 
@@ -49,5 +54,6 @@ apply plugin: 'com.github.luxlang.lux'
 lux {
   program = 'your/package/main'
   sourcePath = 'src'
+  build = "debug"
 }
 ```
