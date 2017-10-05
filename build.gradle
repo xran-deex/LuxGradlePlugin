@@ -1,4 +1,5 @@
 apply plugin: 'groovy'
+apply plugin: 'maven'
 
 dependencies {
   compile gradleApi()
@@ -6,4 +7,4 @@ dependencies {
 }
 
 group = 'com.github.luxlang'
-version = '0.1-SNAPSHOT'
+version = '0.3-SNAPSHOT'
